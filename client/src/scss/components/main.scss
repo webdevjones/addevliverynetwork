@@ -1,0 +1,71 @@
+#app-body {
+    height: $mainHeight;
+    overflow-y: hidden;
+    display: flex;
+    .app-body--section {
+        flex-grow: 1;
+        border: 1px dashed black;
+        display: flex;
+        flex-direction: column;
+
+        .app-body--section--currimg {
+            // flex-grow: 1;
+            height: 250px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .app-body--section--picklist--filter {
+            padding: 10px 0px;
+            display: flex;
+            align-items: center;
+            label{
+                margin-right: 10px;
+            }
+            input{
+                flex-grow: 1;
+                font-size: 18px;
+            }
+        }
+        
+        .app-body--section--picklist {
+            flex: 1;
+            display: flex;
+            overflow: auto;
+            flex-direction: column;
+            .app-body--section--picklist--table {
+                display: flex;
+                flex-direction: column;
+                min-height: min-content;
+                .app-body--section--picklist--table--row {
+                    display: flex;
+                    align-items: center;
+                    padding: 8px 5px;
+                    &:nth-child(even) {
+                        background-color: #d0d0d073;
+                    }
+                    .app-body--section--picklist--table--row--tag {
+                        flex-grow: 1;
+                    }
+                    .app-body--section--picklist--table--row--delete,
+                    .app-body--section--picklist--table--row--check {
+                        width: 10%;
+                        height: 30px;
+                        // border: 1px solid white;
+                        border-color: white;
+                        color: white;
+                        font-weight: 700;
+                        // font-size: 20px;
+                    }
+                    .app-body--section--picklist--table--row--delete {
+                        margin: 0 10px;
+                        background-color: red;
+                    }
+                    .app-body--section--picklist--table--row--check {
+                        background-color: green;
+                    }
+                }
+            }
+        }
+    }
+}

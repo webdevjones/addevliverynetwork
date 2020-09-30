@@ -1,0 +1,195 @@
+#dashboard {
+    // border: 1px dashed black;
+    background-color: $adn_grey;
+    // height: $mainHeight;
+    padding-top: 45px;
+    .grid-container--wrapper {
+        height: inherit;
+        // display: flex;
+        // justify-content: center;
+        // align-items: center;
+        .grid-container {
+            display: grid;
+            grid-template-columns: 95vw;
+            grid-template-rows: auto;
+            row-gap: 30px;
+            grid-template-areas:
+                "curr"
+                "table";
+            width: 95vw;
+            margin: 0 auto;
+
+            .current,
+            .table {
+                width: 95vw;
+            }
+
+            .current {
+                grid-area: curr;
+                background-color: $adn_white;
+                border: 2px solid lighten($adn_text_grey, 15%);
+                box-sizing: border-box;
+                height: 42vh;
+                border-radius: 2px;
+
+                .current--wrapper {
+                    display: flex;
+                    justify-content: space-around;
+                    height: inherit;
+                    overflow: hidden;
+                    align-items: center;
+
+                    .current--item {
+                        height: 90%;
+                        overflow: hidden;
+                        width: 30%;
+                        display: flex;
+                        justify-content: space-between;
+                        flex-direction: column;
+                        .current--item--label {
+                            font-weight: 700;
+                            font-size: 16px;
+                            color: $adn_text_black;
+                            text-align: center;
+                        }
+                        .current--item--img-container {
+                            height: 280px;
+                            // display: flex;
+                            overflow-y: auto;
+                            text-align: center;
+                            .current--item--img-container-img {
+                                max-width: 100%;
+                            }
+                        }
+                    }
+                }
+            }
+            .table {
+                // height: 42vh;
+                border-radius: 2px;
+                border: 2px solid lighten($adn_text_grey, 15%);
+                box-sizing: border-box;
+
+                grid-area: table;
+                background-color: $adn_white;
+                .table--wrapper {
+                    display: flex;
+                    flex-direction: column;
+                    height: inherit;
+                    .table--grid--item {
+                        padding: 15px;
+                        box-sizing: border-box;
+                        border-bottom: 2px solid #eeeeee;
+                    }
+
+                    .table--header {
+                        display: grid;
+                        grid-template-columns: repeat(3, 3fr 1fr 1fr);
+                        grid-template-rows: auto;
+
+                        grid-template-areas: "header-a header-b header-c header-d header-e header-f header-g header-h header-i";
+
+                        .table--header--item {
+                            font-weight: 700;
+                            font-size: 16px;
+                            color: $adn_text_black;
+                        }
+                    }
+                    .table--filter {
+                        label {
+                            font-weight: 700;
+                            font-size: 16px;
+                            color: $adn_text_black;
+                            margin-right: 10px;
+                        }
+                        input {
+                            font-size: 16px;
+                        }
+                    }
+                    .table--selection {
+                        flex-grow: 1;
+                        display: grid;
+                        grid-template-columns: repeat(3, 1fr);
+                        grid-template-rows: auto;
+                        grid-template-areas: "type-0 type-1 type-2";
+
+                        .table--selection--section {
+                            // background-color: $adn_info;
+                            // box-sizing: border-box;
+                            // border: 3px dashed white;
+
+                            .table--selection--section--row {
+                                display: grid;
+                                grid-template-columns: 3fr 1fr 1fr;
+                                grid-template-rows: auto;
+                                grid-template-areas: "tag select delete";
+                                &.green {
+                                    background-color: lighten($adn_success, 40%);
+                                }
+                                &:last-child {
+                                    .table--grid--item {
+                                        border-bottom: none;
+                                    }
+                                }
+
+                                .table--selection--section--tag {
+                                    display: flex;
+                                    align-items: center;
+                                    &::before {
+                                        content: "\2022";
+                                        font-size: 16px;
+                                        transform: scale(1.5);
+                                        margin-right: 15px;
+                                    }
+                                }
+                                &:nth-child(4n-3) {
+                                    .table--selection--section--tag {
+                                        &::before {
+                                            color: $adn_success;
+                                        }
+                                    }
+                                }
+                                &:nth-child(4n-2) {
+                                    .table--selection--section--tag {
+                                        &::before {
+                                            color: $adn_warning;
+                                        }
+                                    }
+                                }
+                                &:nth-child(4n-1) {
+                                    .table--selection--section--tag {
+                                        &::before {
+                                            color: $adn_info;
+                                        }
+                                    }
+                                }
+                                &:nth-child(4n) {
+                                    .table--selection--section--tag {
+                                        &::before {
+                                            color: $adn_danger;
+                                        }
+                                    }
+                                }
+
+                                .table--selection--section--select,
+                                .table--selection--section--delete {
+                                    // text-align: center;
+                                    .table--selection--section--select--btn {
+                                        border-color: $adn_white;
+                                        color: $adn_white;
+                                        &.green {
+                                            background-color: $adn_success;
+                                        }
+                                        &.red {
+                                            background-color: $adn_danger;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

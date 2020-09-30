@@ -1,0 +1,64 @@
+version: "3"
+
+services: 
+    client:
+        build: ./client
+        ports:
+            - 3000:3000
+        volumes:
+            - ./client/src:/client/src
+            - ./client/public:/client/public
+        command: npm run start
+        restart: always
+        tty: true
+        links: 
+            - server
+        networks: 
+            - webappnetwork
+
+    server:
+        build: ./server
+        ports:
+            - 3001:3001
+            - 9229:9229
+        volumes:
+            - ./server:/server
+            # - ./client/public:/client/public
+        command: npm run dev
+        depends_on:
+            - db
+        restart: always
+        tty: true
+        links: 
+            - db
+        networks: 
+            - webappnetwork
+        # environment:
+        #     - MONGO_USERNAME=admin
+        #     - MONGO_PASSWORD=Password123!
+        #     - MONGO_HOSTNAME=db
+        #     - MONGO_PORT=27017
+        #     - MONGO_DB=test
+
+    db:
+        image: mongo
+        # environment:
+        #     # provide your credentials here
+        #     - MONGO_INITDB_ROOT_USERNAME=admin
+        #     - MONGO_INITDB_ROOT_PASSWORD=Password123!
+        ports: 
+            - 27017:27017
+        restart: always
+        command: mongod
+
+        volumes: 
+            - data-node:/data/db
+        networks: 
+            - webappnetwork
+
+networks: 
+    webappnetwork:
+        driver: bridge
+
+volumes:
+    data-node:

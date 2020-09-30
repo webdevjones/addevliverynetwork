@@ -1,0 +1,80 @@
+#root {
+    // position: relative;
+    #adForm--wrapper {
+        // position: absolute;
+        // z-index: 5;
+        // top: 0;
+        // left: 0;
+        // right: 0;
+        // bottom: 0;
+
+        height: $mainHeight;
+        padding-top: 45px;
+        // display: flex;
+        // justify-content: center;
+        // align-items: center;
+        background-color: $adn_grey;
+        #adForm {
+            border: 2px solid lighten($adn_text_grey, 15%);
+            position: relative;
+            // border: 1px dashed black;
+            width: 95vw;
+            box-sizing: border-box;
+            margin: 0 auto;
+            // height: 80vh;
+            background-color: white;
+            form {
+                display: flex;
+                flex-direction: column;
+                .form-wrapper {
+                    flex-grow: 1;
+                    display: flex;
+                    justify-content: space-between;
+                    margin-bottom: 15px;
+                    .form-section {
+                        flex-grow: 1;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        .form-section--error{
+                            color: $adn_danger;
+                            margin: 5px 0px;
+                        }
+                        .form-section--header {
+                            font-weight: 700;
+                            font-size: 16px;
+                            color: $adn_text_black;
+                            margin-top: 15px;
+                        }
+                        .form-section--fields {
+                            .form-section--fields--field {
+                                margin-bottom: 15px;
+                                display: flex;
+                                flex-direction: column;
+                                label {
+                                    margin-bottom: 10px;
+                                }
+                            }
+                        }
+                    }
+                }
+                .form-submit {
+                    font-weight: 700;
+                    font-size: 20px;
+                    color: $adn_white;
+                    background-color: $adn_success;
+                    // background-color: lighten($adn_success, 40%);
+                    height: 50px;
+                    border-color: white;
+
+                }
+            }
+            .adForm--close {
+                position: absolute;
+                z-index: 6;
+                top: 5px;
+                right: 5px;
+            }
+        }
+    }
+}
