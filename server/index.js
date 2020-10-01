@@ -4,25 +4,11 @@ require('express-async-errors')
 const adsRouter = require('./controllers/ads')
 const cors = require('cors')
 const mongoose = require('mongoose')
-// const config = require('./utils/config')
 
 const morgan = require('morgan')
 app.use(express.static('build'))
 
-// console.log(process.env.ENV)
-
-// const {
-//     MONGO_USERNAME,
-//     MONGO_PASSWORD,
-//     MONGO_HOSTNAME,
-//     MONGO_PORT,
-//     MONGO_DB
-// } = process.env
-
-// const mongoUrl = process.env.ENV === 'DEV' ? config.MONGO_DEV_URI : config.MONGO_URI
 const mongoUrl = 'mongodb://db:27017/test?retryWrites=true&w=majority'
-// const mongoUrl = 'mongodb://admin:Password123!@localhost:27017/test?retryWrites=true&w=majority&authSource=admin'
-// const mongoUrl = `mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_HOSTNAME}:${MONGO_PORT}/${MONGO_DB}?retryWrites=true&w=majority`
 console.log('connecting to: ', mongoUrl)
 mongoose
     .connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true })

@@ -14,8 +14,8 @@ const path = require('path')
 AWS.config.update({
     // accessKeyId: config.AWS_ACCESS_KEY_ID,
     // secretAccessKey: config.AWS_SECRET_ACCESS_KEY,
-    accessKeyId: 'AKIAJTZUDQWEHGABURRA',
-    secretAccessKey: '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',
+    accessKeyId: process.env.AWS_KEY,
+    secretAccessKey: process.env.AWS_SECRET_KEY,
     region: 'us-east-1'
 })
 const s3 = new AWS.S3()

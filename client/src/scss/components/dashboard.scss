@@ -52,6 +52,13 @@
                             color: $adn_text_black;
                             text-align: center;
                         }
+                        .current--item--link {
+                            font-size: 14px;
+                            color: $adn_text_grey;
+                            text-align: center;
+                            font-style: italic;
+                            width: 100%;
+                        }
                         .current--item--img-container {
                             height: 280px;
                             // display: flex;

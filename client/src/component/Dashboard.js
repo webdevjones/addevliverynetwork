@@ -36,7 +36,9 @@ const CurrentAd = ({ type }) => {
                 <div className="current--item--img-container">
                     {
                         typeof currUrls[type] !== 'undefined'
-                            ? <img src={currUrls[type].s3url} alt={label} className="current--item--img-container-img" />
+                            ? <a href={currUrls[type].link} target="_blank" rel="noopener noreferrer">
+                                <img src={currUrls[type].s3url} alt={label} className="current--item--img-container-img" />
+                            </a>
                             : false
                     }
 
