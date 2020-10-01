@@ -1,9 +1,15 @@
 import axios from 'axios'
+let BaseAddUrl = 'http://localhost:3001/api/ads/add/'
+let BaseGetUrl = 'http://localhost:3001/api/ads/'
+let BaseCurrUrl = 'http://localhost:3001/api/ads/current/'
+let BaseDeleteUrl = 'http://localhost:3001/api/ads/delete/'
 
-const BaseAddUrl = 'http://localhost:3001/api/ads/add/'
-const BaseGetUrl = 'http://localhost:3001/api/ads/'
-const BaseCurrUrl = 'http://localhost:3001/api/ads/current/'
-const BaseDeleteUrl = 'http://localhost:3001/api/ads/delete/'
+if (process.env.NODE_ENV === 'production') {
+    BaseAddUrl = '/api/ads/add/'
+    BaseGetUrl = '/api/ads/'
+    BaseCurrUrl = '/api/ads/current/'
+    BaseDeleteUrl = '/api/ads/delete/'
+}
 
 const addAd = async (Data, type) => {
     console.log("Posting data: ", Data)

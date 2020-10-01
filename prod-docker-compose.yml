@@ -23,6 +23,7 @@ services:
             # - 9229:9229
         volumes:
             - ./server:/server
+            - ./server/node_modules
             # - ./client/public:/client/public
         command: npm run start
         env_file: ./server/.env
