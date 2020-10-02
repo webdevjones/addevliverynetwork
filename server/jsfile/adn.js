@@ -14,6 +14,8 @@ const adn = () => {
                 img.setAttribute('alt', ad.tag)
                 link.appendChild(img)
                 banner.appendChild(link)
+                banner.style.display = 'flex'
+                banner.style.justifyContent = 'center'
 
             })
             .catch(err => console.error(err))
@@ -32,6 +34,8 @@ const adn = () => {
                 img.setAttribute('alt', ad.tag)
                 link.appendChild(img)
                 mid.appendChild(link)
+                mid.style.display = 'flex'
+                mid.style.justifyContent = 'center'
 
             })
             .catch(err => console.error(err))
@@ -50,6 +54,8 @@ const adn = () => {
                 img.setAttribute('alt', ad.tag)
                 link.appendChild(img)
                 long.appendChild(link)
+                long.style.display = 'flex'
+                long.style.justifyContent = 'center'
 
             })
             .catch(err => console.error(err))
