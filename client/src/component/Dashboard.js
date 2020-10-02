@@ -119,7 +119,7 @@ const TableSection = ({ type, filter }) => {
                     })
                 }
                 {ads
-                    .filter(elem => (elem.type === type && elem.tag.includes(filter) && elem.current !== 1))
+                    .filter(elem => (elem.type === type && elem.tag.toLowerCase().includes(filter.toLowerCase()) && elem.current !== 1))
                     .reverse()
                     .map(item => {
                         return (
