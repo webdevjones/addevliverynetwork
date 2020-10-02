@@ -54,15 +54,14 @@ const CurrentAd = ({ type }) => {
         )
     }
 }
-const TableSection = ({ type, filter }) => {
-    const dispatch = useDispatch()
 
-    let ads = useSelector(state => state.ads)
+const TableSelectionRow = ({ item }) => {
+    const [show, setShow] = useState(0)
+    const dispatch = useDispatch()
 
     const handleSelect = async (e, item) => {
         e.preventDefault()
         await setCurr(item.id)
-        // console.log(item)
         dispatch(setCurrId(item.id, item.type))
     }
     const handleDelete = async (e, item) => {
@@ -70,6 +69,42 @@ const TableSection = ({ type, filter }) => {
         await deleteAdOnServer(item.id)
         dispatch(deleteAd(item.id))
     }
+
+    const handleOver = (e) => {
+        setShow(1)
+
+    }
+    const handleLeave = (e) => {
+        setShow(0)
+    }
+    return (
+        <div key={item.id} className="table--selection--section--row" >
+            <div className="table--grid--item table--selection--section--item table--selection--section--tag" onMouseOver={handleOver} onMouseLeave={handleLeave}>
+                {item.tag}
+                {
+                    show
+                        ? <div className="table--selection--section--tag--thumb">
+                            <img className="table--selection--section--tag--thumb--img img-fluid" src={item.s3url} alt={item.tag} />
+                        </div>
+                        : false
+                }
+            </div>
+            <div className="table--grid--item table--selection--section--item table--selection--section--select">
+                <button onClick={e => handleSelect(e, item)} className="table--selection--section--select--btn green">&#10003;</button>
+            </div>
+            <div className="table--grid--item table--selection--section--item table--selection--section--delete">
+                <button onClick={e => handleDelete(e, item)} className="table--selection--section--select--btn red">X</button>
+            </div>
+
+        </div>
+    )
+}
+
+const TableSection = ({ type, filter }) => {
+
+    let ads = useSelector(state => state.ads)
+
+
     if (ads.length) {
         return (
             <div className="table--selection--section">
@@ -88,15 +123,7 @@ const TableSection = ({ type, filter }) => {
                     .reverse()
                     .map(item => {
                         return (
-                            <div key={item.id} className="table--selection--section--row">
-                                <div className="table--grid--item table--selection--section--item table--selection--section--tag">{item.tag}</div>
-                                <div className="table--grid--item table--selection--section--item table--selection--section--select">
-                                    <button onClick={e => handleSelect(e, item)} className="table--selection--section--select--btn green">&#10003;</button>
-                                </div>
-                                <div className="table--grid--item table--selection--section--item table--selection--section--delete">
-                                    <button onClick={e => handleDelete(e, item)} className="table--selection--section--select--btn red">X</button>
-                                </div>
-                            </div>
+                            <TableSelectionRow key={item.id} item={item} />
                         )
                     })
                 }

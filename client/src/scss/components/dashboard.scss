@@ -86,7 +86,7 @@
                     .table--grid--item {
                         padding: 15px;
                         box-sizing: border-box;
-                        border-bottom: 2px solid #eeeeee;
+                        // border-bottom: 2px solid #eeeeee;
                     }
 
                     .table--header {
@@ -130,6 +130,7 @@
                                 grid-template-columns: 3fr 1fr 1fr;
                                 grid-template-rows: auto;
                                 grid-template-areas: "tag select delete";
+                                position: relative;
                                 &.green {
                                     background-color: lighten($adn_success, 40%);
                                 }
@@ -142,38 +143,49 @@
                                 .table--selection--section--tag {
                                     display: flex;
                                     align-items: center;
+                                    position: relative;
                                     &::before {
-                                        content: "\2022";
-                                        font-size: 16px;
-                                        transform: scale(1.5);
+                                        content: "";
+                                        $barheight: 50%;
+                                        position: absolute;
+                                        top: calc((100% - #{$barheight})/2);
+                                        left: 5px;
+                                        height: $barheight;
+                                        // font-size: 16px;
+                                        // transform: scale(1.5);
+                                        width: 2px;
                                         margin-right: 15px;
+                                        // content: "\2022";
+                                        // font-size: 16px;
+                                        // transform: scale(1.5);
+                                        // margin-right: 15px;
                                     }
                                 }
                                 &:nth-child(4n-3) {
                                     .table--selection--section--tag {
                                         &::before {
-                                            color: $adn_success;
+                                            background-color: $adn_success;
                                         }
                                     }
                                 }
                                 &:nth-child(4n-2) {
                                     .table--selection--section--tag {
                                         &::before {
-                                            color: $adn_warning;
+                                            background-color: $adn_warning;
                                         }
                                     }
                                 }
                                 &:nth-child(4n-1) {
                                     .table--selection--section--tag {
                                         &::before {
-                                            color: $adn_info;
+                                            background-color: $adn_info;
                                         }
                                     }
                                 }
                                 &:nth-child(4n) {
                                     .table--selection--section--tag {
                                         &::before {
-                                            color: $adn_danger;
+                                            background-color: $adn_danger;
                                         }
                                     }
                                 }
@@ -182,8 +194,13 @@
                                 .table--selection--section--delete {
                                     // text-align: center;
                                     .table--selection--section--select--btn {
-                                        border-color: $adn_white;
+                                        // border-color: $adn_white;
                                         color: $adn_white;
+                                        outline: none;
+                                        border: none;
+                                        border-radius: 10px;
+                                        cursor: pointer;
+                                        height: 21px;
                                         &.green {
                                             background-color: $adn_success;
                                         }
@@ -191,6 +208,15 @@
                                             background-color: $adn_danger;
                                         }
                                     }
+                                }
+                                .table--selection--section--tag--thumb{
+                                    position: absolute;
+                                    $thumbSize: 100px;
+                                    height: $thumbSize;
+                                    width: $thumbSize;
+                                    top: 0;
+                                    right: 0;
+                                    z-index: 5;
                                 }
                             }
                         }

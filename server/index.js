@@ -4,7 +4,8 @@ require('express-async-errors')
 const adsRouter = require('./controllers/ads')
 const cors = require('cors')
 const mongoose = require('mongoose')
-
+const https = require('https')
+const fs = require('fs')
 const morgan = require('morgan')
 app.use(express.static('build'))
 
@@ -58,6 +59,14 @@ app.use(errorHandler)
 
 
 const PORT = process.env.PORT || 3001
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`)
-})
+// app.listen(PORT, () => {
+//     console.log(`Server running on port ${PORT}`)
+// })
+https
+    .createServer({
+        key: fs.readFileSync('server.key'),
+        cert: fs.readFileSync('server.cert')
+    }, app)
+    .listen(PORT, function () {
+        console.log(`Server running on port ${PORT}`)
+    })

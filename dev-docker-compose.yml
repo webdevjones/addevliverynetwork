@@ -25,6 +25,8 @@ services:
             - ./server:/server
             # - ./client/public:/client/public
         command: npm run dev
+        env_file: ./server/.env
+
         depends_on:
             - db
         restart: always
