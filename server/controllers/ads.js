@@ -40,6 +40,9 @@ adsRouter.get('/', async (req, res) => {
     const ads = await Ads.find({})
     res.json(ads.map(ad => ad.toJSON()))
 })
+adsRouter.get('/adn.js', async (req, res) => {
+    res.type('.js').sendFile('/server/jsfile/adn.js')
+})
 adsRouter.get('/current/:type', async (req, res) => {
     const type = req.params.type
     const ads = await Ads.find({ type: type, current: 1 })
