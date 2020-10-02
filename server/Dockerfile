@@ -1,14 +1,15 @@
-FROM node
+FROM node:14-alpine
+RUN mkdir -p /server/node_modules && chown -R node:node /server
+WORKDIR /server
 
-RUN mkdir -p /server/
-WORKDIR /server/
+COPY package*.json ./
 
-COPY ./package.json .
+USER node
 
-RUN npm i
+RUN npm install
 
-COPY . /server/
+COPY --chown=node:node . .
 
-# EXPOSE 3000
+EXPOSE 3001
 
 CMD ["npm", "run", "start"]

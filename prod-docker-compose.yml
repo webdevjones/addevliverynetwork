@@ -16,26 +16,42 @@ services:
     #     networks: 
     #         - webappnetwork
 
-    server:
+    nodejs:
         build: ./server
-        ports:
-            - 3001:3001
-            # - 9229:9229
         volumes:
             - ./server:/server
-            - ./server/node_modules
-            # - ./client/public:/client/public
+            - /home/ubuntu/addeliverynetwork/server/node_modules
         command: npm run start
+        #ports:
+        #   - 80:3001
         env_file: ./server/.env
         depends_on:
             - db
-        restart: always
+        restart: unless-stopped
         tty: true
         links: 
             - db
         networks: 
             - webappnetwork
 
+   
+    webserver:
+        image: nginx:mainline-alpine
+        container_name: webserver
+        restart: unless-stopped
+        ports:
+            - "80:80"
+            - "443:443"
+        volumes:
+            - web-root:/var/www/html
+            - ./server/nginx-conf:/etc/nginx/conf.d
+            - certbot-etc:/etc/letsencrypt
+            - certbot-var:/var/lib/letsencrypt
+            - dhparam:/etc/ssl/certs
+        depends_on:
+            - nodejs
+        networks:
+            - webappnetwork
     db:
         image: mongo
         ports: 
@@ -47,10 +63,33 @@ services:
             - data-node:/data/db
         networks: 
             - webappnetwork
-
+    certbot:
+        image: certbot/certbot
+        container_name: certbot
+        volumes:
+            - certbot-etc:/etc/letsencrypt
+            - certbot-var:/var/lib/letsencrypt
+            - web-root:/var/www/html
+        depends_on:
+            - webserver
+        command: certonly --webroot --webroot-path=/var/www/html --email jjones@mrc.org --agree-tos --no-eff-email --force-renewal -d ads.mrc.org  -d www.ads.mrc.org
 networks: 
     webappnetwork:
         driver: bridge
 
 volumes:
     data-node:
+    certbot-etc:
+    certbot-var:
+    web-root:
+        driver: local
+        driver_opts:
+            type: none
+            device: /home/ubuntu/addevliverynetwork/server/build/
+            o: bind
+    dhparam:
+        driver: local
+        driver_opts:
+            type: none
+            device: /home/ubuntu/addevliverynetwork/server/dhparam/
+            o: bind
