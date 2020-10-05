@@ -1,0 +1,77 @@
+#login {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $adn_grey;
+    .login--form--wrapper {
+        background-color: lighten($adn_success, 30%);
+        overflow: hidden;
+        padding: 80px 15px;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 300px;
+        .login--form--info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+            height: 100px;
+            .login--form--info--title {
+                display: flex;
+                align-items: center;
+                .login--form--info--title--wrapper {
+                    display: flex;
+                    align-items: baseline;
+                    .login--form--info--title--main {
+                        font-weight: 700;
+                        font-size: 32px;
+                        margin-right: 5px;
+                    }
+                    .login--form--info--title--sub {
+                        display: flex;
+                        align-items: flex-end;
+                        .login--form--info--title--sub--text {
+                            font-size: 14px;
+                            font-style: italic;
+                            color: $adn_info;
+                        }
+                    }
+                }
+            }
+        }
+
+        .login--form {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 130px;
+            .login--form--field {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                height: 50px;
+                input {
+                    font-size: 18px;
+                }
+            }
+            #login-form-submit {
+                width: 100%;
+                background-color: $adn_white;
+                font-size: 18px;
+                font-weight: bold;
+                border-radius: 10px;
+                border: none;
+                outline: none;
+                padding: 10px 0px;
+                cursor: pointer;
+                &.incorrect {
+                    color: $adn_danger;
+                }
+            }
+        }
+    }
+}

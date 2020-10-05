@@ -3,12 +3,20 @@ let BaseAddUrl = 'http://localhost:3001/api/ads/add/'
 let BaseGetUrl = 'http://localhost:3001/api/ads/'
 let BaseCurrUrl = 'http://localhost:3001/api/ads/current/'
 let BaseDeleteUrl = 'http://localhost:3001/api/ads/delete/'
+let BasePassCheck = 'http://localhost:3001/api/passcheck/'
 
 if (process.env.NODE_ENV === 'production') {
     BaseAddUrl = '/api/ads/add/'
     BaseGetUrl = '/api/ads/'
     BaseCurrUrl = '/api/ads/current/'
     BaseDeleteUrl = '/api/ads/delete/'
+    BasePassCheck = 'http://localhost:3001/api/passcheck/'
+}
+
+const checkPass = async pass => {
+    const response = await axios.post(`${BasePassCheck}${pass}`)
+    console.log(response.data)
+    return(response.data.accept)
 }
 
 const addAd = async (Data, type) => {
@@ -44,5 +52,6 @@ export {
     addAd,
     getAll,
     deleteAdOnServer,
-    setCurr
+    setCurr,
+    checkPass
 }

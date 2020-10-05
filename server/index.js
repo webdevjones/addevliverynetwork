@@ -2,10 +2,9 @@ const express = require('express')
 const app = express()
 require('express-async-errors')
 const adsRouter = require('./controllers/ads')
+const passRouter = require('./controllers/pass')
 const cors = require('cors')
 const mongoose = require('mongoose')
-const https = require('https')
-const fs = require('fs')
 const morgan = require('morgan')
 app.use(express.static('build'))
 
@@ -41,6 +40,7 @@ const unknownEndpoint = (request, response) => {
 }
 
 app.use('/api/ads', adsRouter)
+app.use('/api/passcheck', passRouter)
 
 
 app.use(unknownEndpoint)
@@ -59,11 +59,6 @@ app.use(errorHandler)
 
 
 const PORT = process.env.PORT || 3001
- app.listen(PORT, () => {
-     console.log(`Server running on port ${PORT}`)
- })
-//https
-  //  .createServer({}, app)
-  //  .listen(PORT, function () {
-  //      console.log(`Server running on port ${PORT}`)
-  //  })
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`)
+})

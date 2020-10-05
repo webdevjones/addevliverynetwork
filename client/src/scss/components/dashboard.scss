@@ -1,8 +1,9 @@
 #dashboard {
     // border: 1px dashed black;
     background-color: $adn_grey;
-    // height: $mainHeight;
+    min-height: $mainHeight;
     padding-top: 45px;
+    padding-bottom: 45px;
     .grid-container--wrapper {
         height: inherit;
         // display: flex;
@@ -151,6 +152,7 @@
                                         top: calc((100% - #{$barheight})/2);
                                         left: 5px;
                                         height: $barheight;
+                                        border-radius: 10px;
                                         // font-size: 16px;
                                         // transform: scale(1.5);
                                         width: 2px;

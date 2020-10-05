@@ -29,7 +29,6 @@ const CurrentAd = ({ type }) => {
         else {
             //should never get here
         }
-        console.log(currUrls)
         return (
             <div className="current--item">
                 <div className="current--item--label">{label}</div>

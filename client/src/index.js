@@ -8,9 +8,9 @@ import './style.css'
 // import './style.min.css'
 
 const store = createStore(reducer)
-store.subscribe(() => console.log("Store: ", store.getState()))
+// store.subscribe(() => console.log("Store: ", store.getState()))
 
-console.log(store.getState())
+// console.log(store.getState())
 ReactDOM.render(
   <Provider store={store}>
     <App />
