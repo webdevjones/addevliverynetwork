@@ -6,9 +6,10 @@
     align-items: center;
     background-color: $adn_grey;
     .login--form--wrapper {
-        background-color: lighten($adn_success, 30%);
+        background-color: $adn_white;
+        // background-color: lighten($adn_success, 30%);
         overflow: hidden;
-        padding: 80px 15px;
+        padding: 50px 15px;
         border-radius: 10px;
         display: flex;
         flex-direction: column;
@@ -18,8 +19,8 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: space-around;
-            height: 100px;
+            justify-content: space-between;
+            height: 115px;
             .login--form--info--title {
                 display: flex;
                 align-items: center;
@@ -48,19 +49,30 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            height: 130px;
+            height: 140px;
             .login--form--field {
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
-                height: 50px;
+                height: 70px;
+                label{
+
+                    font-size: 18px;
+                }
                 input {
                     font-size: 18px;
+                    padding: 10px 0px 10px 10px;
+                    &:focus{
+                        outline-color: $adn_warning;
+
+                    }
                 }
             }
             #login-form-submit {
                 width: 100%;
-                background-color: $adn_white;
+                // background-color: $adn_white;
+                background-color: $adn_success;
+                color: $adn_white;
                 font-size: 18px;
                 font-weight: bold;
                 border-radius: 10px;
@@ -68,8 +80,13 @@
                 outline: none;
                 padding: 10px 0px;
                 cursor: pointer;
+                transition: background-color .3s;
                 &.incorrect {
-                    color: $adn_danger;
+                    background-color: $adn_danger;
+                }
+                &:hover{
+                    background-color: lighten($adn_success, 3%);
+
                 }
             }
         }

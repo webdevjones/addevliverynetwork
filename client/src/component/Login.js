@@ -26,7 +26,6 @@ const Login = ({ setLogin }) => {
         <div id="login">
             <div className="login--form--wrapper">
                 <div className="login--form--info">
-                    <img className="login--form--info--logo" src="/static/ADN.svg" alt="MRC ADN Logo" />
 
                     <div className="login--form--info--title">
                         <div className="login--form--info--title--wrapper">
@@ -40,6 +39,7 @@ const Login = ({ setLogin }) => {
                             </div>
                         </div>
                     </div>
+                    <img className="login--form--info--logo" src="/static/ADN.svg" alt="MRC ADN Logo" />
                 </div>
                 <form className="login--form">
                     <div className="login--form--field">
