@@ -8,7 +8,7 @@ const mongoose = require('mongoose')
 const morgan = require('morgan')
 app.use(express.static('build'))
 
-const mongoUrl = 'mongodb://db:27017/test?retryWrites=true&w=majority'
+const mongoUrl = process.env.MONGO_URI
 console.log('connecting to: ', mongoUrl)
 mongoose
     .connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true })

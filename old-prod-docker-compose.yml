@@ -8,12 +8,12 @@ services:
             - /home/ubuntu/addeliverynetwork/server/node_modules
         command: npm run start
         env_file: ./server/.env
-        #depends_on:
-        #   - db
+        depends_on:
+            - db
         restart: unless-stopped
         tty: true
-        #links: 
-        #   - db
+        links: 
+            - db
         networks: 
             - webappnetwork
 
@@ -35,18 +35,17 @@ services:
             - nodejs
         networks:
             - webappnetwork
-              
-              #db:
-              #image: mongo
-              # ports: 
-              #- 27017:#27017
-              #  restart: always
-              # command: mongod
+    db:
+        image: mongo
+        ports: 
+            - 27017:27017
+        restart: always
+        command: mongod
 
-              # volumes: 
-              # - data-node:/data/db
-              # networks: 
-              # - webappnetwork
+        volumes: 
+            - data-node:/data/db
+        networks: 
+            - webappnetwork
     certbot:
         image: certbot/certbot
         container_name: certbot
